@@ -96,14 +96,15 @@ public class App {
         return novaPartida;
     }
 
-    public static void ExibirPartida(String nomePartida, String dataPartida, String localPartida, int ingressosInteira, int ingressosMeia){
+    public static void ExibirPartida(Partida partida){
         System.out.println("===========PARTIDA ATUAL===========");
         System.out.println("");
 
-        System.out.println("Nome da partida: " + nomePartida);
-        System.out.println("Data da partida: " + dataPartida);
-        System.out.println("Local da partida: " + localPartida);
-        System.out.println("Quantidade de ingressos inteira: " + ingressosInteira);
-        System.out.println("Quantidade de ingressos meia: " + ingressosMeia);
+        System.out.println("Nome da partida: " + partida.getName());
+        System.out.println("Data da partida: " + partida.getData());
+        System.out.println("Local da partida: " + partida.getLocal());
+        System.out.println("Quantidade de ingressos disponiveis: " + partida.getIngressos());
+        System.out.println("");
+    
     }
 }
