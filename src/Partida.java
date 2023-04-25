@@ -56,10 +56,26 @@ public class Partida {
     }
 
     //Método venderIngresso(TipoIngresso tipo): realiza a venda de ingressos do tipo e quantidade especificados e retorna o valor total da venda;
-    public double venderIngresso(TipoIngresso tipo){
-        return 1.0;
+    public double venderIngresso(TipoIngresso tipo, int quantidade, Partida partida){
+        double valorTotal = 0;
+        
+       for(int qtd = 0; qtd < quantidade; qtd++){
+            Ingresso novoIngresso;
+
+        if(tipo == TipoIngresso.INTEIRA){
+
+            novoIngresso = new IngressoInteira(partida, null, qtd);
+            ingressosInteira -= qtd;
+
+        } else {
+            novoIngresso = new IngressoMeia(partida, null, qtd);
+            ingressosMeia -= qtd;
+        }
+
+        valorTotal += novoIngresso.getPreco();
+       }
+       
+        return valorTotal;
     }
-
-
 
 }

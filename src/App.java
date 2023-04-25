@@ -31,12 +31,13 @@ public class App {
 
                 case 2:
                     //chamar metodo de vender ingresso
-                    System.out.println("✅");
+                    venderIngressoUI(partidaUsuario);
+                    System.out.println("Venda efetivada com sucesso!");
                     break;
 
                 case 3:
                     //exibir informaçoes da partida
-                    ExibirPartida(partidaUsuario.nome, partidaUsuario.data, partidaUsuario.local, partidaUsuario.ingressosInteira, partidaUsuario.ingressosMeia);
+                    ExibirPartida(partidaUsuario);
                     break;
 
                 case 4:
@@ -107,4 +108,25 @@ public class App {
         System.out.println("");
     
     }
+
+    public static double venderIngressoUI(Partida partidaUsuario){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("===========VENDENDO INGRESSO===========");
+        System.out.println("");
+        
+
+        System.out.println("Qual tipo de ingresso deseja comprar? (INTEIRA/MEIA) ");
+        TipoIngresso tipo = TipoIngresso.valueOf(scanner.nextLine().toUpperCase());
+
+        System.out.println("Quantos ingressos deseja comprar? ");
+        int qtdCompra = scanner.nextInt();
+
+        System.out.println("✅Venda Realizada com sucesso!✅");
+
+        return partidaUsuario.venderIngresso(tipo, qtdCompra, partidaUsuario);
+    }
+
+
+
 }
