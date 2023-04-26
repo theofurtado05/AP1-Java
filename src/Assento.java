@@ -3,10 +3,10 @@ public class Assento {
     char fila;
 
     public int getNumero(){
-        return numero;
+        return this.numero;
     }
 
     public char getFila(){
-        return fila;
+        return this.fila;
     }
 }

@@ -7,7 +7,6 @@ public class Partida {
     //mapa com a quantidade de ingressos tipo meia disponíveis;
     int ingressosMeia;
 
-
     //CONSTRUTOR
     Partida(String nome, String data, String local, int ingressosInteira, int ingressosMeia){
         this.nome = nome;
@@ -19,22 +18,22 @@ public class Partida {
 
     //retorna o nome da partida;
     public String getName(){
-        return nome;
+        return this.nome;
     }
 
     //retorna a data e horário da partida;
     public String getData(){
-        return data;
+        return this.data;
     }
 
     //retorna o local onde será realizada a partida;
     public String getLocal(){
-        return local;
+        return this.local;
     }
    
     //retorna o número de ingressos disponíveis (soma dos ingressos tipo inteira e meia);
     public int getIngressos(){
-        return ingressosInteira + ingressosMeia;
+        return this.ingressosInteira + this.ingressosMeia;
     }
 
     //verifica se há ingressos disponíveis para o tipo e quantidade especificados; isIngressoDisponivel(TipoIngresso tipo, int quantidade)
@@ -55,27 +54,57 @@ public class Partida {
         return false;
     }
 
-    //Método venderIngresso(TipoIngresso tipo): realiza a venda de ingressos do tipo e quantidade especificados e retorna o valor total da venda;
-    public double venderIngresso(TipoIngresso tipo, int quantidade, Partida partida){
+    //Vender Ingresso
+    public double venderIngresso(TipoIngresso tipo, int quantidade){
         double valorTotal = 0;
-        
-       for(int qtd = 0; qtd < quantidade; qtd++){
-            Ingresso novoIngresso;
 
-        if(tipo == TipoIngresso.INTEIRA){
-
-            novoIngresso = new IngressoInteira(partida, null, qtd);
-            ingressosInteira -= qtd;
-
-        } else {
-            novoIngresso = new IngressoMeia(partida, null, qtd);
-            ingressosMeia -= qtd;
+        if(!(isIngressoDisponivel(tipo, quantidade))){
+            System.out.println("Quantidade indisponivel!");
+            return valorTotal;
         }
 
-        valorTotal += novoIngresso.getPreco();
-       }
-       
+
+        //se for meia
+        if(tipo == TipoIngresso.MEIA){
+            valorTotal = quantidade * 80/2;
+            ingressosMeia -= quantidade;
+        } else if(tipo == TipoIngresso.INTEIRA){
+            valorTotal = quantidade * 80;
+            ingressosInteira -= quantidade;
+        }
+
+
         return valorTotal;
     }
+   
+
+    //Exibir partida
+    @Override
+    public String toString(){
+        String mostrarPartida;
+
+        mostrarPartida = "Nome da partida: " + this.nome + "\n";
+        mostrarPartida += "Data: " + this.data + "\n";
+        mostrarPartida += "Local: " + this.local + "\n";
+
+        mostrarPartida += "Numero de ingressos Inteira: " + this.ingressosInteira + "\n";
+
+        mostrarPartida += "Numero de ingressos Meia: " + this.ingressosMeia + "\n";
+
+        return mostrarPartida;
+
+    }
+
+    //Exibir quantidade de ingressos restantes
+    // public void exibirIngressosRestantes(){
+    //     int ingressosTotal = this.ingressosInteira + this.ingressosMeia;
+
+    //     System.out.println("Ingressos restantes: " + ingressosTotal);
+
+    //     System.out.println("Ingressos Inteira restantes: " + this.ingressosInteira);
+
+    //     System.out.println("Ingressos Inteira meia: " + this.ingressosMeia);
+
+    // }
 
 }
