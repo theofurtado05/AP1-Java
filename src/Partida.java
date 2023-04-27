@@ -41,16 +41,17 @@ public class Partida {
         if(tipo == TipoIngresso.MEIA){
             //verifica meia
             if(ingressosMeia > quantidade){
-                System.out.println(ingressosMeia + " ingressos meia estao disponiveis no momento.");
                 return true;
                 } 
-            } else if(tipo == TipoIngresso.INTEIRA){
+            } 
+
+        else if(tipo == TipoIngresso.INTEIRA){
             //verifica inteira
             if(ingressosInteira > quantidade){
-                System.out.println(ingressosInteira + " ingressos meia estao disponiveis no momento.");
                 return true;
             } 
         }
+
         return false;
     }
 

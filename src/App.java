@@ -1,17 +1,18 @@
 import java.util.Scanner;
 
+import javax.sound.sampled.ReverbType;
+
 
 public class App {
     public static void main(String[] args) throws Exception {      
         //Exibir Informaçoes do ultimo ingresso vendido
 
         Partida partidaUsuario = null;
-        Ingresso ingressoInteira = new IngressoInteira(partidaUsuario, null, 100);
-        Ingresso ingressoMeia = new IngressoMeia(partidaUsuario, null, 50);
-
+    
         Scanner scanner = new Scanner(System.in);
         TipoIngresso tipo = null;
-        
+        Ingresso ultimoIngresso = null;
+       
       
         
         menuOptions();
@@ -32,7 +33,7 @@ public class App {
                         break;
                     }
                     System.out.println("============BILHETERIA==========\n");
-                    abrirBilheteria(partidaUsuario, tipo, scanner);
+                    ultimoIngresso = abrirBilheteria(partidaUsuario, tipo, scanner);
                     break;
 
                 case 3:
@@ -55,6 +56,7 @@ public class App {
                    
                     if(partidaUsuario == null){
                         System.out.println("Nenhuma partida cadastrada\n");
+                        System.out.println("\n==========================================\n");
                         break;
                     }
 
@@ -72,8 +74,12 @@ public class App {
                         break;
                     }
 
-                    //FALTA AQUIIIIIIIIIIII!!!!!!!
-                    System.out.println();
+                   if(ultimoIngresso != null){
+                    mostrarUltimoIngresso(ultimoIngresso);
+                   } else {
+                    System.out.println("Ainda nenhum ingresso foi vendido.");
+                   }
+                    
                     
                     System.out.println("\n==========================================\n");
                     
@@ -136,8 +142,11 @@ public class App {
         return novaPartida;
     }
     
-    public static void abrirBilheteria(Partida partidaUsuario, TipoIngresso tipo, Scanner scanner){
-                
+    public static Ingresso abrirBilheteria(Partida partidaUsuario, TipoIngresso tipo, Scanner scanner){
+        
+        Assento[] assentosEscolhidos;
+        Assento ultimoAssento = new Assento();
+       
         int opcao = 0;
         
         while(opcao != 1){
@@ -160,7 +169,7 @@ public class App {
 
             //qtdCompra dentro do assento => numero de assentos que serão selecionados, 
             //com base na qtd de ingressos comprados
-            Assento[] assentosUsuario = new Assento[qtdCompra];
+            assentosEscolhidos = new Assento[qtdCompra];
             
             for(int i = 0; i < qtdCompra; i++){
                 System.out.println("Digite a letra da fila do " + (i+1) + "o ingresso.");
@@ -180,7 +189,7 @@ public class App {
                 //verifica se o assento ta disponivel
                 boolean assentoDisponivel = true;
                     //como se fosse um for int i in lista
-                for (Assento j : assentosUsuario) {
+                for (Assento j : assentosEscolhidos) {
                     if ((j != null) && (j.getFila() == letraFilaUpperCase) && (j.getNumero() == numAssento)) {
                         assentoDisponivel = false;
                         break;
@@ -189,10 +198,16 @@ public class App {
 
                 if (!assentoDisponivel) {
                     System.out.println("O assento " + numAssento + letraFilaUpperCase + " já foi comprado. Por favor, escolha outro assento.");
-                    i--; 
                     //volta um valor no for para o usuário escolher outro assento
+                    i--; 
+                    
+
                 } else {
-                    assentosUsuario[i] = new Assento(numAssento, letraFilaUpperCase);
+                    assentosEscolhidos[i] = new Assento(numAssento, letraFilaUpperCase);
+                    
+                    ultimoAssento = new Assento();
+                    ultimoAssento.numero = assentosEscolhidos[i].numero; 
+                    ultimoAssento.fila = assentosEscolhidos[i].fila; 
                 }
             }
 
@@ -202,8 +217,8 @@ public class App {
 
             System.out.println("Assentos: \n");
 
-            for(int i = 0; i < assentosUsuario.length; i++){
-                System.out.println("Assento " + assentosUsuario[i].numero + " na fila: " + assentosUsuario[i].fila + "\n");
+            for(int i = 0; i < assentosEscolhidos.length; i++){
+                System.out.println("Assento " + assentosEscolhidos[i].numero + " na fila: " + assentosEscolhidos[i].fila + "\n");
             }
 
             System.out.println("\n");
@@ -232,7 +247,19 @@ public class App {
 
             }
         }
-                        
+        
+        // System.out.println("ULTIMO INGRESSO");
+        // System.out.println(ultimoAssento.fila);
+        // System.out.println(ultimoAssento.numero);
+
+        Ingresso ultimoIngresso = new IngressoInteira(partidaUsuario, ultimoAssento, 80);
+
+        return ultimoIngresso;
     }
 
+    public static void mostrarUltimoIngresso(Ingresso ultimoIngresso){
+        System.out.println("Assento do ultimo ingresso vendido: " + ultimoIngresso.assento);
+        System.out.println("Valor: " + ultimoIngresso.getPreco());
+    }
 }
+

@@ -8,4 +8,8 @@ public abstract class Ingresso{
     public double getPreco(){
         return this.preco;
     }
+
+    public Assento getAssento() {
+        return this.assento;
+    }
 }
