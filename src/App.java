@@ -12,7 +12,7 @@ public class App {
 
         Partida partidaUsuario = null;
         Scanner scanner = new Scanner(System.in);
-        TipoIngresso tipo;
+        TipoIngresso tipo = null;
         
       
         
@@ -34,70 +34,7 @@ public class App {
                         break;
                     }
                     System.out.println("============BILHETERIA==========\n");
-                        int opcao = 0;
-                        //Identado assim apenas para melhor visualizaçao do codigo.
-                        while(opcao != 1){
-                            System.out.println("Qual tipo de ingresso deseja comprar? (1- INTEIRA/2- MEIA)");
-                            int tipoInt = scanner.nextInt();
-
-                            if(tipoInt == 1){
-                                tipo = TipoIngresso.INTEIRA;
-
-                            } else if(tipoInt == 2){
-                                tipo = TipoIngresso.MEIA;
-                            } else {
-                                System.out.println("Valor invalido.");
-                                continue;
-                            }
-                            
-                            System.out.println("Quantos ingressos deseja comprar? ");
-                            int qtdCompra = scanner.nextInt();
-
-                            Assento[] assentosUsuario = new Assento[qtdCompra];
-                            for(int i = 0; i < qtdCompra; i++){
-                                System.out.println("Digite a letra da " + (i+1) + "a fila");
-                                char letraFila = scanner.next().charAt(0);
-
-                                System.out.println("Digite o numero do assento: ");
-                                int numAssento = scanner.nextInt();
-
-                                assentosUsuario[i] = new Assento(numAssento, letraFila);
-
-                            }
-
-                            System.out.println("======CONFIRMAÇAO DE COMPRA======\n");
-                            System.out.println("Tipo do Ingresso: " + tipo);
-                            System.out.println("Quantidade: " + qtdCompra);
-
-                            System.out.println("Assentos: \n");
-                            for(int i = 0; i < assentosUsuario.length; i++){
-                                System.out.println("Assento " + assentosUsuario[i].numero + " na fila: " + assentosUsuario[i].fila + "\n");
-                            }
-
-                            System.out.println("\n");
-
-                            System.out.println("1- Confirmar");
-                            System.out.println("2- Alterar");
-                            opcao = scanner.nextInt();
-
-                            if(opcao != 1 && opcao != 2){
-                                System.err.println("Opçao Invalida.\n");
-                            } else if(opcao == 2){
-                                System.out.println("===ALTERAR===\n");
-                            } else if(opcao == 1){
-                                double valorTotalVenda = partidaUsuario.venderIngresso(tipo, qtdCompra);
-                                
-                                if(valorTotalVenda == 0){
-                                    System.out.println("\n===VENDA INDISPONIVEL===\n");
-
-                                }else{
-                                    System.out.println("Valor Total: " + valorTotalVenda);
-                                    System.out.println("===VENDA REALIZADA COM SUCESSO===\n");
-                                }
-   
-                            }
-                        }
-                        
+                    abrirBilheteria(partidaUsuario, tipo, scanner);
                     break;
 
                 case 3:
@@ -117,7 +54,7 @@ public class App {
 
                     System.out.println("Ingressos restantes: " + partidaUsuario.getIngressos());
 
-                    System.out.println("==========\n");
+                    System.out.println("==========================================\n");
 
                     break;
 
@@ -151,7 +88,7 @@ public class App {
         System.out.println("2- Vender Ingresso");
         System.out.println("3- Exibir informações");
         System.out.println("4- Exibir ingressos restantes");
-        System.out.println("5- Exibir ultimo ingresso");
+        System.out.println("5- Exibir ultimo ingresso vendido");
         System.out.println("6- Sair");
         
     }
@@ -185,4 +122,77 @@ public class App {
         return novaPartida;
     }
     
+    public static void abrirBilheteria(Partida partidaUsuario, TipoIngresso tipo, Scanner scanner){
+                
+                int opcao = 0;
+               
+                while(opcao != 1){
+                    System.out.println("Qual tipo de ingresso deseja comprar? (1- INTEIRA/2- MEIA)");
+                    int tipoInt = scanner.nextInt();
+
+                    if(tipoInt == 1){
+                        tipo = TipoIngresso.INTEIRA;
+
+                    } else if(tipoInt == 2){
+                        tipo = TipoIngresso.MEIA;
+                            
+                    } else {
+                        System.out.println("Valor invalido.");
+                        continue;
+                    }
+                            
+                    System.out.println("Quantos ingressos deseja comprar? ");
+                    int qtdCompra = scanner.nextInt();
+
+                    Assento[] assentosUsuario = new Assento[qtdCompra];
+                    for(int i = 0; i < qtdCompra; i++){
+                        System.out.println("Digite a letra da " + (i+1) + "a fila");
+                        char letraFila = scanner.next().charAt(0);
+
+                        System.out.println("Digite o numero do assento: ");
+                        int numAssento = scanner.nextInt();
+
+                        assentosUsuario[i] = new Assento(numAssento, letraFila);
+
+                    }
+
+                    System.out.println("======CONFIRMAÇAO DE COMPRA======\n");
+                    System.out.println("Tipo do Ingresso: " + tipo);
+                    System.out.println("Quantidade: " + qtdCompra);
+
+                    System.out.println("Assentos: \n");
+
+                    for(int i = 0; i < assentosUsuario.length; i++){
+                        System.out.println("Assento " + assentosUsuario[i].numero + " na fila: " + assentosUsuario[i].fila + "\n");
+                    }
+
+                    System.out.println("\n");
+
+                    System.out.println("1- Confirmar");
+                    System.out.println("2- Alterar");
+                    
+                    opcao = scanner.nextInt();
+
+                    if(opcao != 1 && opcao != 2){
+                        System.err.println("Opçao Invalida.\n");
+                   
+                    } else if(opcao == 2){
+                        System.out.println("===ALTERAR===\n");
+                    
+                    } else if(opcao == 1){
+                        double valorTotalVenda = partidaUsuario.venderIngresso(tipo, qtdCompra);
+                                
+                            if(valorTotalVenda == 0){
+                                System.out.println("\n===VENDA INDISPONIVEL===\n");
+
+                            }else{
+                                System.out.println("Valor Total: " + valorTotalVenda);
+                                System.out.println("===VENDA REALIZADA COM SUCESSO===\n");
+                            }
+   
+                    }
+                }
+                        
+    }
+
 }
