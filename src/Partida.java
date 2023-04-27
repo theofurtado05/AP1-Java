@@ -40,14 +40,14 @@ public class Partida {
     public boolean isIngressoDisponivel(TipoIngresso tipo, int quantidade){
         if(tipo == TipoIngresso.MEIA){
             //verifica meia
-            if(ingressosMeia > quantidade){
+            if(ingressosMeia >= quantidade){
                 return true;
                 } 
             } 
 
         else if(tipo == TipoIngresso.INTEIRA){
             //verifica inteira
-            if(ingressosInteira > quantidade){
+            if(ingressosInteira >= quantidade){
                 return true;
             } 
         }
@@ -58,24 +58,23 @@ public class Partida {
     //Vender Ingresso
     public double venderIngresso(TipoIngresso tipo, int quantidade){
         double valorTotal = 0;
-      
+        
 
         if(!(isIngressoDisponivel(tipo, quantidade))){
             System.out.println("Quantidade indisponivel!");
             return valorTotal;
         }
 
+        double preco = tipo.getPreco();
+        valorTotal = preco * quantidade;
         
+
         if(tipo == TipoIngresso.MEIA){
             //se for meia
-            
-            valorTotal = quantidade * 80/2;
             ingressosMeia -= quantidade;
 
         } else if(tipo == TipoIngresso.INTEIRA){
             //se for inteira
-            
-            valorTotal = quantidade * 80;
             ingressosInteira -= quantidade;
         }
 

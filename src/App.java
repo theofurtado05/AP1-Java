@@ -248,14 +248,20 @@ public class App {
         // System.out.println("ULTIMO INGRESSO");
         // System.out.println(ultimoAssento.fila);
         // System.out.println(ultimoAssento.numero);
+        
+        Ingresso ultimoIngresso;
 
-        Ingresso ultimoIngresso = new IngressoInteira(partidaUsuario, ultimoAssento, 80);
-
+        if(tipo == TipoIngresso.INTEIRA){
+            ultimoIngresso = new IngressoInteira(partidaUsuario, ultimoAssento, TipoIngresso.INTEIRA.preco);
+        } else {
+            ultimoIngresso = new IngressoMeia(partidaUsuario, ultimoAssento, TipoIngresso.MEIA.preco);
+        }
+    
         return ultimoIngresso;
     }
 
     public static void mostrarUltimoIngresso(Ingresso ultimoIngresso){
-        System.out.println("Assento do ultimo ingresso vendido: " + ultimoIngresso.assento);
+        System.out.println("Assento do ultimo ingresso vendido: " + ultimoIngresso.assento.fila + ultimoIngresso.assento.numero);
         System.out.println("Valor: " + ultimoIngresso.getPreco());
     }
 }
