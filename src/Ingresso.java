@@ -8,5 +8,4 @@ public abstract class Ingresso{
     public double getPreco(){
         return this.preco;
     }
-
 }

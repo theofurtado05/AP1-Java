@@ -5,6 +5,6 @@ public class IngressoMeia extends Ingresso {
         this.partida = partida;
         this.assento = assento;
         this.preco = preco;
-    }    
-    
+    }   
+
 }

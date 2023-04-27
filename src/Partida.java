@@ -57,6 +57,7 @@ public class Partida {
     //Vender Ingresso
     public double venderIngresso(TipoIngresso tipo, int quantidade){
         double valorTotal = 0;
+      
 
         if(!(isIngressoDisponivel(tipo, quantidade))){
             System.out.println("Quantidade indisponivel!");
@@ -66,10 +67,13 @@ public class Partida {
         
         if(tipo == TipoIngresso.MEIA){
             //se for meia
+            
             valorTotal = quantidade * 80/2;
             ingressosMeia -= quantidade;
+
         } else if(tipo == TipoIngresso.INTEIRA){
             //se for inteira
+            
             valorTotal = quantidade * 80;
             ingressosInteira -= quantidade;
         }

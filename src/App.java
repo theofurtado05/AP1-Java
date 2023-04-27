@@ -2,13 +2,8 @@ import java.util.Scanner;
 
 
 public class App {
-    public static void main(String[] args) throws Exception {
-        //USUARIO DEVE
-            // Realizar venda de um ingresso, onde o usuario escolhe um assento (fila e numero)
-      
+    public static void main(String[] args) throws Exception {      
         //Exibir Informaçoes do ultimo ingresso vendido
-
-        
 
         Partida partidaUsuario = null;
         Ingresso ingressoInteira = new IngressoInteira(partidaUsuario, null, 100);
@@ -168,28 +163,36 @@ public class App {
             Assento[] assentosUsuario = new Assento[qtdCompra];
             
             for(int i = 0; i < qtdCompra; i++){
-                System.out.println("Digite a letra da " + (i+1) + "a fila");
+                System.out.println("Digite a letra da fila do " + (i+1) + "o ingresso.");
                 char letraFila = scanner.next().charAt(0);
                 
                 System.out.println("Digite o numero do assento: ");
                 int numAssento = scanner.nextInt();
 
+                //passando letraFila para uppercase
+                String letraFilaString = Character.toString(letraFila);
+                String letraFilaStringUpperCase = letraFilaString.toUpperCase();
+                
+                //char que ira ser usado
+                char letraFilaUpperCase = letraFilaStringUpperCase.charAt(0);
+
+
                 //verifica se o assento ta disponivel
                 boolean assentoDisponivel = true;
                     //como se fosse um for int i in lista
                 for (Assento j : assentosUsuario) {
-                    if ((j != null) && (j.getFila() == letraFila) && (j.getNumero() == numAssento)) {
+                    if ((j != null) && (j.getFila() == letraFilaUpperCase) && (j.getNumero() == numAssento)) {
                         assentoDisponivel = false;
                         break;
                     }
                 }
 
                 if (!assentoDisponivel) {
-                    System.out.println("O assento " + numAssento + letraFila + " já foi comprado. Por favor, escolha outro assento.");
+                    System.out.println("O assento " + numAssento + letraFilaUpperCase + " já foi comprado. Por favor, escolha outro assento.");
                     i--; 
                     //volta um valor no for para o usuário escolher outro assento
                 } else {
-                    assentosUsuario[i] = new Assento(numAssento, letraFila);
+                    assentosUsuario[i] = new Assento(numAssento, letraFilaUpperCase);
                 }
             }
 

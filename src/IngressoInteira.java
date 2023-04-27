@@ -6,4 +6,5 @@ public class IngressoInteira extends Ingresso {
         this.assento = assento;
         this.preco = preco;
     }    
+
 }
