@@ -40,8 +40,12 @@ public class App {
                 case 3:
                     //Exibir informaçoes da partida
                     System.out.println("=======EXIBINDO PARTIDA=======\n");
+                    if(partidaUsuario == null){
+                        System.out.println("Nenhuma partida cadastrada\n");
+                        break;
+                    }
                     
-                    System.out.println(partidaUsuario.toString()); 
+                    System.out.println(partidaUsuario.toString());
                     
                     System.out.println("==============================\n");
                     
@@ -51,16 +55,29 @@ public class App {
                     //Exibir o número de ingressos restantes;
                     System.out.println("=======EXIBINDO INGRESSOS RESTANTES=======\n");
                    
+                    if(partidaUsuario == null){
+                        System.out.println("Nenhuma partida cadastrada\n");
+                        break;
+                    }
 
                     System.out.println("Ingressos restantes: " + partidaUsuario.getIngressos());
 
-                    System.out.println("==========================================\n");
+                    System.out.println("\n==========================================\n");
 
                     break;
 
                 case 5:
-                    //Exibir informações do último ingresso vendido;;
-                    System.out.println("5");
+                    //Exibir informações do último ingresso vendido;
+                    System.out.println("=======ULTIMO INGRESSO VENDIDO=======\n");
+                    if(partidaUsuario == null){
+                        System.out.println("Nenhuma partida cadastrada\n");
+                        break;
+                    }
+
+                    //FALTA AQUIIIIIIIIIIII!!!!!!!
+                    
+                    System.out.println("\n==========================================\n");
+                    
                     break;
 
                 case 6:
