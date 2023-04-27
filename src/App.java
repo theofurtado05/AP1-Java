@@ -1,8 +1,5 @@
 import java.util.Scanner;
 
-import javax.sound.sampled.ReverbType;
-
-
 public class App {
     public static void main(String[] args) throws Exception {      
         //Exibir Informaçoes do ultimo ingresso vendido
