@@ -63,7 +63,6 @@ public class Partida {
             return valorTotal;
         }
 
-
         
         if(tipo == TipoIngresso.MEIA){
             //se for meia

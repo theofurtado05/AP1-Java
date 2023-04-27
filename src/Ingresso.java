@@ -3,7 +3,7 @@ public abstract class Ingresso{
     TipoIngresso tipo;
 
     Assento assento;
-    double preco = 80.00;
+    double preco;
 
     public double getPreco(){
         return this.preco;
