@@ -5,9 +5,6 @@ public class App {
     public static void main(String[] args) throws Exception {
         //USUARIO DEVE
             // Realizar venda de um ingresso, onde o usuario escolhe um assento (fila e numero)
-            // Programa deve exibir as informaçoes para validaçao do usuario
-            // Programa deve sinalizar que a compra foi realizada
-
       
         //Exibir Informaçoes do ultimo ingresso vendido
 
@@ -16,6 +13,7 @@ public class App {
         Partida partidaUsuario = null;
         Scanner scanner = new Scanner(System.in);
         TipoIngresso tipo;
+        
       
         
         menuOptions();
@@ -55,10 +53,29 @@ public class App {
                             System.out.println("Quantos ingressos deseja comprar? ");
                             int qtdCompra = scanner.nextInt();
 
+                            Assento[] assentosUsuario = new Assento[qtdCompra];
+                            for(int i = 0; i < qtdCompra; i++){
+                                System.out.println("Digite a letra da " + (i+1) + "a fila");
+                                char letraFila = scanner.next().charAt(0);
+
+                                System.out.println("Digite o numero do assento: ");
+                                int numAssento = scanner.nextInt();
+
+                                assentosUsuario[i] = new Assento(numAssento, letraFila);
+
+                            }
+
                             System.out.println("======CONFIRMAÇAO DE COMPRA======\n");
                             System.out.println("Tipo do Ingresso: " + tipo);
                             System.out.println("Quantidade: " + qtdCompra);
+
+                            System.out.println("Assentos: \n");
+                            for(int i = 0; i < assentosUsuario.length; i++){
+                                System.out.println("Assento " + assentosUsuario[i].numero + " na fila: " + assentosUsuario[i].fila + "\n");
+                            }
+
                             System.out.println("\n");
+
                             System.out.println("1- Confirmar");
                             System.out.println("2- Alterar");
                             opcao = scanner.nextInt();
@@ -81,14 +98,16 @@ public class App {
                             }
                         }
                         
-                        //passar para o usuario escolher a fila e o numero do assento tambem
                     break;
 
                 case 3:
                     //Exibir informaçoes da partida
                     System.out.println("=======EXIBINDO PARTIDA=======\n");
+                    
                     System.out.println(partidaUsuario.toString()); 
+                    
                     System.out.println("==============================\n");
+                    
                     break;
 
                 case 4:
@@ -97,7 +116,9 @@ public class App {
                    
 
                     System.out.println("Ingressos restantes: " + partidaUsuario.getIngressos());
+
                     System.out.println("==========\n");
+
                     break;
 
                 case 5:
