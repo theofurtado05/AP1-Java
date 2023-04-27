@@ -64,11 +64,13 @@ public class Partida {
         }
 
 
-        //se for meia
+        
         if(tipo == TipoIngresso.MEIA){
+            //se for meia
             valorTotal = quantidade * 80/2;
             ingressosMeia -= quantidade;
         } else if(tipo == TipoIngresso.INTEIRA){
+            //se for inteira
             valorTotal = quantidade * 80;
             ingressosInteira -= quantidade;
         }

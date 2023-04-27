@@ -24,7 +24,7 @@ public class App {
                 
                 case 1:
                     //criando partida e atribuindo a um objeto partida
-                    partidaUsuario = criarPartida();
+                    partidaUsuario = criarPartida(scanner);
                     break;
 
                 case 2:
@@ -110,9 +110,7 @@ public class App {
         
     }
 
-    public static Partida criarPartida(){
-        Scanner scanner = new Scanner(System.in);
-
+    public static Partida criarPartida(Scanner scanner){
         System.out.println("===========CRIANDO PARTIDA===========");
         System.out.println("");
         
