@@ -245,10 +245,6 @@ public class App {
             }
         }
         
-        // System.out.println("ULTIMO INGRESSO");
-        // System.out.println(ultimoAssento.fila);
-        // System.out.println(ultimoAssento.numero);
-        
         Ingresso ultimoIngresso;
 
         if(tipo == TipoIngresso.INTEIRA){
